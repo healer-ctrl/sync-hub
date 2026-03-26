@@ -18,17 +18,17 @@ export type Database = {
         Row: {
           key: string
           updated_at: string
-          value: string | null
+          value: string
         }
         Insert: {
           key: string
           updated_at?: string
-          value?: string | null
+          value?: string
         }
         Update: {
           key?: string
           updated_at?: string
-          value?: string | null
+          value?: string
         }
         Relationships: []
       }
@@ -66,7 +66,6 @@ export type Database = {
         Row: {
           beat_or_miss: string | null
           company_id: string
-          created_at: string
           current_ratio: string | null
           debt_equity: string | null
           ebitda: string | null
@@ -76,10 +75,10 @@ export type Database = {
           headline: string | null
           id: string
           pe_ratio: string | null
-          processed_at: string | null
+          processed_at: string
           profit: string | null
           quarter: string | null
-          report_id: string
+          report_id: string | null
           revenue: string | null
           roe: string | null
           sector: string | null
@@ -88,7 +87,6 @@ export type Database = {
         Insert: {
           beat_or_miss?: string | null
           company_id: string
-          created_at?: string
           current_ratio?: string | null
           debt_equity?: string | null
           ebitda?: string | null
@@ -98,10 +96,10 @@ export type Database = {
           headline?: string | null
           id?: string
           pe_ratio?: string | null
-          processed_at?: string | null
+          processed_at?: string
           profit?: string | null
           quarter?: string | null
-          report_id: string
+          report_id?: string | null
           revenue?: string | null
           roe?: string | null
           sector?: string | null
@@ -110,7 +108,6 @@ export type Database = {
         Update: {
           beat_or_miss?: string | null
           company_id?: string
-          created_at?: string
           current_ratio?: string | null
           debt_equity?: string | null
           ebitda?: string | null
@@ -120,10 +117,10 @@ export type Database = {
           headline?: string | null
           id?: string
           pe_ratio?: string | null
-          processed_at?: string | null
+          processed_at?: string
           profit?: string | null
           quarter?: string | null
-          report_id?: string
+          report_id?: string | null
           revenue?: string | null
           roe?: string | null
           sector?: string | null
@@ -137,76 +134,7 @@ export type Database = {
             referencedRelation: "companies"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "report_summaries_report_id_fkey"
-            columns: ["report_id"]
-            isOneToOne: false
-            referencedRelation: "reports"
-            referencedColumns: ["id"]
-          },
         ]
-      }
-      reports: {
-        Row: {
-          company_id: string
-          created_at: string
-          id: string
-          quarter: string
-          raw_pdf_path: string | null
-          report_url: string | null
-          status: string
-          uid: string | null
-        }
-        Insert: {
-          company_id: string
-          created_at?: string
-          id?: string
-          quarter: string
-          raw_pdf_path?: string | null
-          report_url?: string | null
-          status?: string
-          uid?: string | null
-        }
-        Update: {
-          company_id?: string
-          created_at?: string
-          id?: string
-          quarter?: string
-          raw_pdf_path?: string | null
-          report_url?: string | null
-          status?: string
-          uid?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "reports_company_id_fkey"
-            columns: ["company_id"]
-            isOneToOne: false
-            referencedRelation: "companies"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      seen_announcements: {
-        Row: {
-          created_at: string
-          id: string
-          symbol: string | null
-          uid: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          symbol?: string | null
-          uid: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          symbol?: string | null
-          uid?: string
-        }
-        Relationships: []
       }
     }
     Views: {

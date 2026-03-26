@@ -20,14 +20,29 @@ const SectionTitle = ({ icon: Icon, title }: { icon: React.ElementType; title: s
 );
 
 const CompanyDeepDive = ({ company, onBack }: CompanyDeepDiveProps) => {
-  const data = deepDiveData[company.id];
+  const mockData = deepDiveData[company.id];
+  const { data: geminiData, isLoading: geminiLoading, error: geminiError } = useGeminiDeepDive(
+    company.id,
+    company.ticker,
+    company.name
+  );
+  const data = mockData || geminiData;
   const isPositive = company.changePercent >= 0;
   const dragX = useMotionValue(0);
   const pageOpacity = useTransform(dragX, [0, 150], [1, 0.7]);
 
-  if (!data) return null;
+  // Show skeleton while loading Gemini data (only when no mock data)
+  const showLoading = !mockData && geminiLoading;
+  const showError = !mockData && !geminiLoading && geminiError && !data;
 
-  const { overview, stockInfo, quarterlyTimeline, keyMetrics, news, history } = data;
+  if (!data && !showLoading && !showError) return null;
+
+  const overview = data?.overview;
+  const stockInfo = data?.stockInfo;
+  const quarterlyTimeline = data?.quarterlyTimeline || [];
+  const keyMetrics = data?.keyMetrics;
+  const news = data?.news || [];
+  const history = data?.history;
 
   // Find max revenue for chart scaling
   const maxRevenue = Math.max(...quarterlyTimeline.map((q) => q.revenue));

@@ -45,10 +45,10 @@ const CompanyDeepDive = ({ company, onBack }: CompanyDeepDiveProps) => {
   const history = data?.history;
 
   // Find max revenue for chart scaling
-  const maxRevenue = Math.max(...quarterlyTimeline.map((q) => q.revenue));
-  const maxProfit = Math.max(...quarterlyTimeline.map((q) => q.netProfit));
+  const maxRevenue = quarterlyTimeline.length > 0 ? Math.max(...quarterlyTimeline.map((q) => q.revenue)) : 1;
+  const maxProfit = quarterlyTimeline.length > 0 ? Math.max(...quarterlyTimeline.map((q) => q.netProfit)) : 1;
 
-  const metricsGrid = [
+  const metricsGrid = keyMetrics ? [
     { label: "Revenue", value: keyMetrics.revenue },
     { label: "Gross Margin", value: keyMetrics.grossMargin },
     { label: "Net Margin", value: keyMetrics.netMargin },
@@ -56,7 +56,7 @@ const CompanyDeepDive = ({ company, onBack }: CompanyDeepDiveProps) => {
     { label: "ROCE", value: keyMetrics.roce },
     { label: "Debt/Equity", value: keyMetrics.debtToEquity },
     { label: "Free Cash Flow", value: keyMetrics.freeCashFlow },
-  ];
+  ] : [];
 
   return (
     <motion.div

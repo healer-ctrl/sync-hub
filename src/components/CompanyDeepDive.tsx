@@ -278,7 +278,7 @@ const CompanyDeepDive = ({ company, onBack }: CompanyDeepDiveProps) => {
             ))}
           </div>
         </motion.section>
-      </div>
+      </div>}
     </motion.div>
   );
 };

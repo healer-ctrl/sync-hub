@@ -14,7 +14,128 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      app_config: {
+        Row: {
+          key: string
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          key: string
+          updated_at?: string
+          value?: string
+        }
+        Update: {
+          key?: string
+          updated_at?: string
+          value?: string
+        }
+        Relationships: []
+      }
+      companies: {
+        Row: {
+          created_at: string
+          domain: string | null
+          exchange: string | null
+          id: string
+          name: string
+          sector: string | null
+          ticker: string
+        }
+        Insert: {
+          created_at?: string
+          domain?: string | null
+          exchange?: string | null
+          id?: string
+          name: string
+          sector?: string | null
+          ticker: string
+        }
+        Update: {
+          created_at?: string
+          domain?: string | null
+          exchange?: string | null
+          id?: string
+          name?: string
+          sector?: string | null
+          ticker?: string
+        }
+        Relationships: []
+      }
+      report_summaries: {
+        Row: {
+          beat_or_miss: string | null
+          company_id: string
+          current_ratio: string | null
+          debt_equity: string | null
+          ebitda: string | null
+          eps: string | null
+          full_report_text: string | null
+          growth: string | null
+          headline: string | null
+          id: string
+          pe_ratio: string | null
+          processed_at: string
+          profit: string | null
+          quarter: string | null
+          report_id: string | null
+          revenue: string | null
+          roe: string | null
+          sector: string | null
+          summary: string | null
+        }
+        Insert: {
+          beat_or_miss?: string | null
+          company_id: string
+          current_ratio?: string | null
+          debt_equity?: string | null
+          ebitda?: string | null
+          eps?: string | null
+          full_report_text?: string | null
+          growth?: string | null
+          headline?: string | null
+          id?: string
+          pe_ratio?: string | null
+          processed_at?: string
+          profit?: string | null
+          quarter?: string | null
+          report_id?: string | null
+          revenue?: string | null
+          roe?: string | null
+          sector?: string | null
+          summary?: string | null
+        }
+        Update: {
+          beat_or_miss?: string | null
+          company_id?: string
+          current_ratio?: string | null
+          debt_equity?: string | null
+          ebitda?: string | null
+          eps?: string | null
+          full_report_text?: string | null
+          growth?: string | null
+          headline?: string | null
+          id?: string
+          pe_ratio?: string | null
+          processed_at?: string
+          profit?: string | null
+          quarter?: string | null
+          report_id?: string | null
+          revenue?: string | null
+          roe?: string | null
+          sector?: string | null
+          summary?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "report_summaries_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never

@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { ArrowLeft, Building2, TrendingUp, TrendingDown, BarChart3, Grid3X3, Newspaper, BookOpen } from "lucide-react";
+import { ArrowLeft, Building2, TrendingUp, TrendingDown, BarChart3, Grid3X3, Newspaper, BookOpen, AlertCircle } from "lucide-react";
 import type { CompanyData } from "@/data/mockFinancials";
 import { deepDiveData } from "@/data/companyDeepDive";
 import CompanyLogo from "@/components/CompanyLogo";
+import { useGeminiDeepDive } from "@/hooks/useGeminiDeepDive";
+import DeepDiveSkeleton from "@/components/DeepDiveSkeleton";
 
 interface CompanyDeepDiveProps {
   company: CompanyData;

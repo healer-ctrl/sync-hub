@@ -1,1 +1,0 @@
-ALTER TABLE public.report_summaries DROP CONSTRAINT report_summaries_beat_or_miss_check;

@@ -1,7 +1,0 @@
-project_id = "pygsmujlhvyubrqnbwwq"
-
-[functions.process-report]
-verify_jwt = false
-
-[functions.feed]
-verify_jwt = false

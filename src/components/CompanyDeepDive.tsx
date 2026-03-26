@@ -96,7 +96,16 @@ const CompanyDeepDive = ({ company, onBack }: CompanyDeepDiveProps) => {
         </div>
       </div>
 
-      <div className="max-w-[430px] mx-auto px-5 py-6 flex flex-col gap-8 pb-20">
+      {showLoading && <DeepDiveSkeleton />}
+
+      {showError && (
+        <div className="max-w-[430px] mx-auto px-5 py-12 text-center">
+          <AlertCircle className="w-10 h-10 text-destructive mx-auto mb-3" />
+          <p className="text-sm text-muted-foreground">{geminiError}</p>
+        </div>
+      )}
+
+      {data && <div className="max-w-[430px] mx-auto px-5 py-6 flex flex-col gap-8 pb-20">
 
         {/* SECTION 1 — Company Overview */}
         <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
